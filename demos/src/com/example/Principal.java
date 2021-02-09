@@ -11,15 +11,32 @@ public class Principal {
 	}
 
 	public static void main(String[] args) {
-		ejercicio1();
+		juego();
 	}
 	
-	public static void ejercicio1() {
-		System.out.println("Pon algo: ");
-		System.out.println("Dice " + leer());
-		Integer.parseInt("10");
+	public static void juego() {
 		var rnd = new Random();
-		rnd.nextInt(10);
+		int numeroBuscado = rnd.nextInt(100);
+		int numeroIntroducido;
+		int intentos = 0;
+		boolean encontrado = false;
+		do {
+			System.out.print("Dame tu numero (" + intentos + " de 10): ");
+			numeroIntroducido = Integer.parseInt(leer());
+			intentos += 1;
+			if (numeroBuscado == numeroIntroducido) {
+				encontrado = true;
+			} else if (numeroBuscado > numeroIntroducido) {
+				System.out.println("Mi número es mayor.");
+			} else {
+				System.out.println("Mi número es menor.");
+			}
+		} while (intentos < 10 && !encontrado);
+		if (encontrado) {
+			System.out.println("Bieeen!!! Acertaste.");
+		} else {
+			System.out.println("Upsss! Se acabaron los intentos, el número era el " + numeroBuscado);
+		}
 	}
 
 	public static void ejemplos1() {
