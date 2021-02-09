@@ -11,7 +11,8 @@ public class Principal {
 	}
 
 	public static void main(String[] args) {
-		juego();
+		// juego();
+		ejemplos2();
 	}
 	
 	public static void juego() {
@@ -21,7 +22,7 @@ public class Principal {
 		int intentos = 0;
 		boolean encontrado = false;
 		do {
-			System.out.print("Dame tu numero (" + intentos + " de 10): ");
+			System.out.print("Dame tu numero (" + (intentos + 1) + " de 10): ");
 			numeroIntroducido = Integer.parseInt(leer());
 			intentos += 1;
 			if (numeroBuscado == numeroIntroducido) {
@@ -39,6 +40,22 @@ public class Principal {
 		}
 	}
 
+	public static void ejemplos2() {
+//		final byte DOMINGO = 0;
+//		byte dia = 0;
+//		if(dia == DOMINGO) {
+//			// ...
+//		}
+//		// Error
+//		dia = 13;
+		
+		DiasDeLaSemana elDiasDeLaSemana = DiasDeLaSemana.LUNES;
+		if(elDiasDeLaSemana == DiasDeLaSemana.DOMINGO) {
+			// ...
+		}
+		
+		// Persona p = new Persona();
+	}
 	public static void ejemplos1() {
 		int i = 4_000_000, j, k = 1;
 		final String nombre;
