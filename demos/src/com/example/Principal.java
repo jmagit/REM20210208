@@ -1,17 +1,27 @@
 package com.example;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Principal {
 	private static Scanner teclado = new Scanner(System.in);
+
 	public static String leer() {
 		return teclado.nextLine();
 	}
 
 	public static void main(String[] args) {
-		ejemplos1();
+		ejercicio1();
 	}
 	
+	public static void ejercicio1() {
+		System.out.println("Pon algo: ");
+		System.out.println("Dice " + leer());
+		Integer.parseInt("10");
+		var rnd = new Random();
+		rnd.nextInt(10);
+	}
+
 	public static void ejemplos1() {
 		int i = 4_000_000, j, k = 1;
 		final String nombre;
@@ -35,9 +45,49 @@ public class Principal {
 		cond[1] = aux;
 		cond[0] = null;
 		System.out.println(cad[0].charAt(1));
+		j = 0;
+		switch (i) {
+		case 2: 
+			j += 1;
+			//break;
+		case 1: 
+			j += 1;
+			break;
+		case 3:
+		case 4:
+			j = 0;
+			break;
+		case 10:
+			j = 10;
+			break;
+		default:
+			j = 1;
+			break;
+		}
+		
+		for(int ind = 0, otro = 1; ind < tabla.length; ind++, otro++) {
+			tabla[ind] = ind * otro;
+		}
+		for(int valor : tabla) {
+			//System.out.println(valor);
+			valor = 0;
+		}
+		for(int valor : tabla) {
+			System.out.println(valor);
+		}
+		try {
+			throw new Exception();
+		} catch (IndexOutOfBoundsException e) {
+			// TODO: handle exception
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			
+		}
+
 	}
 
 	public void algo() {
-		
+
 	}
 }
