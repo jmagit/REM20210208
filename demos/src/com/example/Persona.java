@@ -8,12 +8,13 @@ public abstract class Persona {
 	private String nombre;
 	private String apellidos;
 	private LocalDate fechaNacimiento;
+	private Genero genero = Genero.DESCONOCIDO;
 
 	public Persona(int id, String nombre, String apellidos, LocalDate fechaNacimiento) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.fechaNacimiento = fechaNacimiento;
+		setFechaNacimiento(fechaNacimiento);
 	}
 	
 	public Persona(int id, String nombre, String apellidos, String fechaNacimiento) {
@@ -39,6 +40,7 @@ public abstract class Persona {
 	}
 
 	public void setNombre(String nombre) {
+		//if(nombre == null)
 		this.nombre = nombre;
 	}
 
@@ -68,19 +70,27 @@ public abstract class Persona {
 
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+		this.edad = calculaEdad();
 	}
 
+	private transient int edad;
 	public int getEdad() {
-		return calculaEdad();
+		return edad;
 	}
 
-	private int calculaEdad() {
+	protected int calculaEdad() {
 		LocalDate hoy = LocalDate.now();
 		return hoy.getYear() - fechaNacimiento.getYear()
 				- (hoy.getDayOfYear() < fechaNacimiento.getDayOfYear() ? 1 : 0);
 	}
 
-	private transient int edad;
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
 
 	@Override
 	public String toString() {

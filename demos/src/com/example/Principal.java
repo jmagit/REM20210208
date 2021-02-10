@@ -12,7 +12,7 @@ public class Principal {
 
 	public static void main(String[] args) {
 		// juego();
-		ejemplos2();
+		ejemplos3();
 	}
 	
 	public static void juego() {
@@ -38,6 +38,22 @@ public class Principal {
 		} else {
 			System.out.println("Upsss! Se acabaron los intentos, el número era el " + numeroBuscado);
 		}
+	}
+	public static void ejemplos3() {
+		Persona p = new Profesor(1, "Pepito", "Grillo", "01/01/1991"), 
+				p2 = new Alumno(2, "Carmelo", "Coton", "02/01/1993");
+		byte dia = 1;
+		p.setFechaNacimiento("01/01/1999");
+		p2.setFechaNacimiento((byte)1,2,1989);
+		if(p.equals(p2)) {
+
+		}
+		System.out.println(p);
+		System.out.println("Edad: " + p.getEdad());
+		((Profesor)p).jubilate();
+		System.out.println(p);
+		System.out.println(p2);
+		System.out.println("Edad: " + p2.getEdad());
 	}
 
 	public static void ejemplos2() {
