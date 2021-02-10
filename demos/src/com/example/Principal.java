@@ -12,7 +12,17 @@ public class Principal {
 
 	public static void main(String[] args) {
 		// juego();
-		ejemplos3();
+		// ejemplos3();
+		juegoExt();
+//		try {
+//			calcula("3+4+3,4-7*1=");
+//		} catch (CalculadoraException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	public static void juego() {
@@ -39,6 +49,71 @@ public class Principal {
 			System.out.println("Upsss! Se acabaron los intentos, el número era el " + numeroBuscado);
 		}
 	}
+
+	public static void juegoExt() {
+		final int INTENTOS = 5;
+		final int MAX = 10;
+		var juego = new JuegoDelNumero(INTENTOS, MAX);
+		String cad;
+		while (true) {
+			juego.inicializar();
+			while (true) {
+				System.out.print("Dame un numero de 0 al " + MAX + " (" + (juego.getIntentos() + 1) 
+						+ " de " + INTENTOS + "): ");
+				cad = leer();
+				if ("".equals(cad) || cad.toUpperCase().equals("FIN"))
+					break;
+				try {
+					juego.jugada(cad);
+					System.out.println(juego.getResultado());
+					if (juego.getFinalizado())
+						break;
+				} catch (JuegoException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			System.out.print("¿Otra? (S/N): ");
+			if(!leer().toLowerCase().equals("s")) break;
+		}
+		System.out.println("Termine!!!");
+	}
+
+	public static void Ejer2() {
+		
+	}
+	
+    public static double calcula(String expresion) throws CalculadoraException, Exception {
+        String operando = "";
+        Calculadora calculadora = new Calculadora();
+        for (int i = 0; i < expresion.length(); i++) {
+            char ch = expresion.charAt(i);
+            if (Character.isDigit(ch)) {
+                operando += ch;
+            } else if (ch == ',') {
+                if (operando.indexOf(ch) == -1) {
+                    operando += ch;
+                } else {
+                    throw new Exception("Ya existe separador decimal.");
+                }
+            } else if ("+-*/%=".indexOf(ch) >= 0) {
+//            } else if (calculadora.isOperacion(ch)) {
+                if (operando.endsWith(",")) {
+                    operando += "0";
+                }
+                double op = Double.parseDouble(operando.replace(',', '.'));
+                System.out.println(operando + " " + ch);
+                calculadora.calcula(op, ch);
+                if (ch == '=') {
+                    break;
+                }
+                operando = "";
+            } else if (ch != ' ') {
+                throw new Exception("Caracter no valido.");
+            }
+        }
+        System.out.println(calculadora.getAcumulado());
+        return calculadora.getAcumulado();
+    }
 
 	public static void ejemplos3() {
 
