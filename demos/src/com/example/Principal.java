@@ -14,7 +14,7 @@ public class Principal {
 		// juego();
 		ejemplos3();
 	}
-	
+
 	public static void juego() {
 		var rnd = new Random();
 		int numeroBuscado = rnd.nextInt(100);
@@ -39,21 +39,42 @@ public class Principal {
 			System.out.println("Upsss! Se acabaron los intentos, el número era el " + numeroBuscado);
 		}
 	}
-	public static void ejemplos3() {
-		Persona p = new Profesor(1, "Pepito", "Grillo", "01/01/1991"), 
-				p2 = new Alumno(2, "Carmelo", "Coton", "02/01/1993");
-		byte dia = 1;
-		p.setFechaNacimiento("01/01/1999");
-		p2.setFechaNacimiento((byte)1,2,1989);
-		if(p.equals(p2)) {
 
+	public static void ejemplos3() {
+
+		Persona p, p2;
+		try {
+			p = new Profesor(1, "Pepito", "Grillo", "01/01/1991");
+			p2 = new Alumno(2, "Carmelo", "Coton", "02/01/1993");
+			while (true) {
+				try {
+					System.out.println("Dame fecha: ");
+					String cad = leer();
+					p.setFechaNacimiento(cad == "" ? null : cad);
+					System.out.println("Edad: " + p.getEdad());
+					break;
+				} catch (CursoException e) {
+					System.out.println("Error: " + e.getMessage());
+					// e.printStackTrace();
+//				} catch (Exception e) {
+////					System.out.println("Error: " + e.getMessage());
+//					e.printStackTrace();
+				}
+			}
+			p2.setFechaNacimiento((byte) 1, 2, 1989);
+			if (p.equals(p2)) {
+
+			}
+			System.out.println(p);
+			System.out.println("Edad: " + p.getEdad());
+			((Profesor) p).jubilate();
+			System.out.println(p);
+			System.out.println(p2);
+			System.out.println("Edad: " + p2.getEdad());
+		} catch (CursoException e) {
+			System.out.println("Error: " + e.getMessage());
+			// e.printStackTrace();
 		}
-		System.out.println(p);
-		System.out.println("Edad: " + p.getEdad());
-		((Profesor)p).jubilate();
-		System.out.println(p);
-		System.out.println(p2);
-		System.out.println("Edad: " + p2.getEdad());
 	}
 
 	public static void ejemplos2() {
@@ -64,14 +85,15 @@ public class Principal {
 //		}
 //		// Error
 //		dia = 13;
-		
+
 		DiasDeLaSemana elDiasDeLaSemana = DiasDeLaSemana.LUNES;
-		if(elDiasDeLaSemana == DiasDeLaSemana.DOMINGO) {
+		if (elDiasDeLaSemana == DiasDeLaSemana.DOMINGO) {
 			// ...
 		}
-		
+
 		// Persona p = new Persona();
 	}
+
 	public static void ejemplos1() {
 		int i = 4_000_000, j, k = 1;
 		final String nombre;
@@ -80,13 +102,13 @@ public class Principal {
 		i = j + k;
 		i = j = k = 0;
 		System.out.println("Hola " + nombre + "\nResultado: " + i);
-		var x = (float)4.0;
+		var x = (float) 4.0;
 		long larga = i;
-		i = (int)larga;
+		i = (int) larga;
 		byte s = Byte.parseByte("0");
 		Object o = new Principal();
 		int[] tabla = new int[10]; // 0..9
-		String cad[] = {"Hola", "mund" };
+		String cad[] = { "Hola", "mund" };
 		cad[1] = "mundo";
 		boolean cond[][] = new boolean[2][2];
 		cond[0] = new boolean[10];
@@ -97,10 +119,10 @@ public class Principal {
 		System.out.println(cad[0].charAt(1));
 		j = 0;
 		switch (i) {
-		case 2: 
+		case 2:
 			j += 1;
-			//break;
-		case 1: 
+			// break;
+		case 1:
 			j += 1;
 			break;
 		case 3:
@@ -114,15 +136,15 @@ public class Principal {
 			j = 1;
 			break;
 		}
-		
-		for(int ind = 0, otro = 1; ind < tabla.length; ind++, otro++) {
+
+		for (int ind = 0, otro = 1; ind < tabla.length; ind++, otro++) {
 			tabla[ind] = ind * otro;
 		}
-		for(int valor : tabla) {
-			//System.out.println(valor);
+		for (int valor : tabla) {
+			// System.out.println(valor);
 			valor = 0;
 		}
-		for(int valor : tabla) {
+		for (int valor : tabla) {
 			System.out.println(valor);
 		}
 		try {
@@ -132,7 +154,7 @@ public class Principal {
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
-			
+
 		}
 
 	}

@@ -10,15 +10,15 @@ public abstract class Persona {
 	private LocalDate fechaNacimiento;
 	private Genero genero = Genero.DESCONOCIDO;
 
-	public Persona(int id, String nombre, String apellidos, LocalDate fechaNacimiento) {
+	public Persona(int id, String nombre, String apellidos, LocalDate fechaNacimiento) throws CursoException {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		setFechaNacimiento(fechaNacimiento);
 	}
-	
-	public Persona(int id, String nombre, String apellidos, String fechaNacimiento) {
-		this(id, nombre, apellidos, LocalDate.parse(fechaNacimiento,  DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
+	public Persona(int id, String nombre, String apellidos, String fechaNacimiento) throws CursoException {
+		this(id, nombre, apellidos, LocalDate.parse(fechaNacimiento, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	}
 
 	public int getId() {
@@ -40,7 +40,7 @@ public abstract class Persona {
 	}
 
 	public void setNombre(String nombre) {
-		//if(nombre == null)
+		// if(nombre == null)
 		this.nombre = nombre;
 	}
 
@@ -56,24 +56,33 @@ public abstract class Persona {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(int dia, int mes, int año) {
+	public void setFechaNacimiento(int dia, int mes, int año) throws CursoException {
 		setFechaNacimiento(LocalDate.of(año, mes, dia));
 	}
 
-	public void setFechaNacimiento(String fecha, String formato) {
-		setFechaNacimiento(LocalDate.parse(fecha,  DateTimeFormatter.ofPattern(formato)));
+	public void setFechaNacimiento(String fecha, String formato) throws CursoException {
+//		try {
+			setFechaNacimiento(LocalDate.parse(fecha, DateTimeFormatter.ofPattern(formato)));
+//		} catch (Exception e) {
+//			throw new CursoException("Error en la fecha", e);
+//		}
 	}
 
-	public void setFechaNacimiento(String fecha) {
-		setFechaNacimiento(fecha,  "dd/MM/yyyy");
+	public void setFechaNacimiento(String fecha) throws CursoException {
+		setFechaNacimiento(fecha, "dd/MM/yyyy");
 	}
 
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) throws CursoException {
+		if (fechaNacimiento == null)
+			throw new IllegalArgumentException("Falta la fecha de nacimiento.");
+		if (LocalDate.now().compareTo(fechaNacimiento) < 0)
+			throw new CursoException("No puede nacer en el futuro.");
 		this.fechaNacimiento = fechaNacimiento;
 		this.edad = calculaEdad();
 	}
 
 	private transient int edad;
+
 	public int getEdad() {
 		return edad;
 	}
@@ -113,5 +122,5 @@ public abstract class Persona {
 			return false;
 		return id == ((Persona) obj).id;
 	}
-	
+
 }

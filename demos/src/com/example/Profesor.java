@@ -6,12 +6,12 @@ public class Profesor extends Persona {
 	private boolean activo = true;
 	private LocalDate fechaJubilacion = null;
 	
-	public Profesor(int id, String nombre, String apellidos, LocalDate fechaNacimiento, boolean activo) {
+	public Profesor(int id, String nombre, String apellidos, LocalDate fechaNacimiento, boolean activo) throws CursoException {
 		super(id, nombre, apellidos, fechaNacimiento);
 		this.activo = activo;
 	}
 
-	public Profesor(int id, String nombre, String apellidos, String fechaNacimiento) {
+	public Profesor(int id, String nombre, String apellidos, String fechaNacimiento) throws CursoException {
 		super(id, nombre, apellidos, fechaNacimiento);
 	}
 
