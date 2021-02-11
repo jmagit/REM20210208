@@ -1,9 +1,13 @@
-package com.example;
+package com.example.domains.entities;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public abstract class Persona {
+import com.example.domains.contracts.*;
+import com.example.domains.utils.Genero;
+import com.example.exceptions.CursoException;
+
+public abstract class Persona implements Grafico {
 	private int id = 1;
 	private String nombre;
 	private String apellidos;

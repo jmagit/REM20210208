@@ -1,4 +1,4 @@
-package com.example;
+package com.example.ejecicios;
 
 /**
  * Clase simple para realizar cálculos acumulados.

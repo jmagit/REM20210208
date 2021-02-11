@@ -1,9 +1,12 @@
-package com.example;
+package com.example.domains.entities;
 
 import java.time.LocalDate;
 
+import com.example.exceptions.CursoException;
+
 public class Profesor extends Persona {
 	private boolean activo = true;
+	@SuppressWarnings("unused")
 	private LocalDate fechaJubilacion = null;
 	
 	public Profesor(int id, String nombre, String apellidos, LocalDate fechaNacimiento, boolean activo) throws CursoException {
@@ -25,6 +28,11 @@ public class Profesor extends Persona {
 	public String toString() {
 		return "Profesor [id=" + getId() + ", nombre=" + getNombre() 
 			+ " " + getApellidos() + (activo ? " En activo" : " Jubilado") + "]";
+	}
+
+	@Override
+	public void pintate() {
+		System.out.println(toString());
 	}
 
 }

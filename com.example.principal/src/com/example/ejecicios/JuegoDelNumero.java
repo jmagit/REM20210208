@@ -1,4 +1,4 @@
-package com.example;
+package com.example.ejecicios;
 
 import java.util.Random;
 
